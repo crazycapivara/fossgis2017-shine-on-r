@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>osrm</title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="site_libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-0.7.7/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="site_libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
+<script src="site_libs/leaflet-label-0.2.2/leaflet.label.js"></script>
+<script src="site_libs/Proj4Leaflet-0.7.2/proj4-compressed.js"></script>
+<script src="site_libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
+<script src="site_libs/leaflet-binding-1.1.0/leaflet.js"></script>
+<script src="site_libs/leaflet-providers-1.0.27/leaflet-providers.js"></script>
+<script src="site_libs/leaflet-providers-plugin-1.1.0/leaflet-providers-plugin.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Shine on R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="basics.html">Say Hi to R</a>
+</li>
+<li>
+  <a href="pipe.html">%&gt;%</a>
+</li>
+<li>
+  <a href="quickstart.html">Quickstart</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ecosystem
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://www.rstudio.com/">RStudio IDE</a>
+    </li>
+    <li>
+      <a href="rlibs.html">libs</a>
+    </li>
+    <li>
+      <a href="htmlwidgets.html">htmlwidgets</a>
+    </li>
+    <li>
+      <a href="shiny.html">shiny</a>
+    </li>
+    <li>
+      <a href="rmarkdown.html">rmarkdown</a>
+    </li>
+    <li>
+      <a href="nodejs.html">nodejs</a>
+    </li>
+    <li>
+      <a href="cpp.html">cpp</a>
+    </li>
+    <li>
+      <a href="leaflet.html">leaflet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    gdal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="sp.html">sp &amp; rgdal</a>
+    </li>
+    <li>
+      <a href="rgeos.html">rgeos</a>
+    </li>
+    <li>
+      <a href="sf.html">sf</a>
+    </li>
+    <li>
+      <a href="postgis.html">postgis</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="osrm.html">osrm</a>
+</li>
+<li>
+  <a href="qgis.html">QGIS</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Contact
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="contact.html">Simple</a>
+    </li>
+    <li>
+      <a href="sandbox.html">Sandbox</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    links
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://rstudio.github.io/leaflet/">leaflet</a>
+    </li>
+    <li>
+      <a href="http://gallery.htmlwidgets.org/">htmlwidgets</a>
+    </li>
+    <li>
+      <a href="https://crazycapivara.github.io/owmr/">owmr</a>
+    </li>
+    <li>
+      <a href="https://www.rstudio.com/">RStudio</a>
+    </li>
+    <li>
+      <a href="https://shiny.rstudio.com/gallery/">Shiny gallery</a>
+    </li>
+    <li>
+      <a href="https://hub.docker.com/u/rocker/">docker</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">osrm</h1>
+
+</div>
+
+
+<pre class="r"><code>airports[c(&quot;name&quot;, &quot;type&quot;)]</code></pre>
+<pre><code>## class       : SpatialPointsDataFrame 
+## features    : 2 
+## extent      : 8.785862, 10.00565, 53.05229, 53.632  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## variables   : 2
+## names       :    name,  type 
+## min values  :  Bremen, major 
+## max values  : Hamburg, major</code></pre>
+<pre class="r"><code>library(osrm)
+
+route &lt;- osrmRoute(airports[1, ], airports[2, ], sp = TRUE)
+
+leaflet(width = &quot;100%&quot;) %&gt;% addProviderTiles(&quot;CartoDB&quot;) %&gt;%
+  addMarkers(data = airports, popup = ~ name) %&gt;%
+  addPolylines(data = route) %&gt;%
+  addControl(
+    sprintf(&quot;&lt;b&gt;Duration&lt;/b&gt;: %i min&quot;,
+            as.integer(route$duration))
+  )</code></pre>
+<div id="htmlwidget-c50b8b07391673dc895c" style="width:100%;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c50b8b07391673dc895c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB",null,null,{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addMarkers","args":[[53.052287104156,53.6320011640866],[8.7858617703132,10.005647830925],null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Bremen","Hamburg"],null,null,null,null,null,null]},{"method":"addPolylines","args":[[[[{"lng":[8.7864,8.79675,8.83366,8.85739,8.89398,8.94485,9.01048,9.09927,9.17813,9.24892,9.3372,9.40003,9.48296,9.60107,9.74441,9.85326,9.91461,9.92774,9.91887,9.92867,9.91532,9.91238,9.93394,9.89883,9.90202,9.92351,9.94688,9.95597,10.01044,10.00638],"lat":[53.05263,53.05673,53.04384,53.02737,53.03885,53.0273,53.05108,53.06054,53.08967,53.16821,53.22994,53.24215,53.28587,53.32806,53.36795,53.37201,53.40727,53.42445,53.44542,53.4618,53.47837,53.50712,53.53188,53.55151,53.56968,53.59457,53.59381,53.61167,53.62383,53.63203]}]]],null,null,{"lineCap":null,"lineJoin":null,"clickable":true,"pointerEvents":null,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":false,"fillColor":"#03F","fillOpacity":0.2,"dashArray":null,"smoothFactor":1,"noClip":false},null,null,null,null,null]},{"method":"addControl","args":["<b>Duration<\/b>: 90 min","topleft",null,"info legend"]}],"limits":{"lat":[53.0273,53.63203],"lng":[8.7858617703132,10.01044]}},"evals":[],"jsHooks":[]}</script>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>

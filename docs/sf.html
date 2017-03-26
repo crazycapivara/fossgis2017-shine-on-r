@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>simple features</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Shine on R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="basics.html">Say Hi to R</a>
+</li>
+<li>
+  <a href="pipe.html">%&gt;%</a>
+</li>
+<li>
+  <a href="quickstart.html">Quickstart</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ecosystem
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://www.rstudio.com/">RStudio IDE</a>
+    </li>
+    <li>
+      <a href="rlibs.html">libs</a>
+    </li>
+    <li>
+      <a href="htmlwidgets.html">htmlwidgets</a>
+    </li>
+    <li>
+      <a href="shiny.html">shiny</a>
+    </li>
+    <li>
+      <a href="rmarkdown.html">rmarkdown</a>
+    </li>
+    <li>
+      <a href="nodejs.html">nodejs</a>
+    </li>
+    <li>
+      <a href="cpp.html">cpp</a>
+    </li>
+    <li>
+      <a href="leaflet.html">leaflet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    gdal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="sp.html">sp &amp; rgdal</a>
+    </li>
+    <li>
+      <a href="rgeos.html">rgeos</a>
+    </li>
+    <li>
+      <a href="sf.html">sf</a>
+    </li>
+    <li>
+      <a href="postgis.html">postgis</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="osrm.html">osrm</a>
+</li>
+<li>
+  <a href="qgis.html">QGIS</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Contact
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="contact.html">Simple</a>
+    </li>
+    <li>
+      <a href="sandbox.html">Sandbox</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    links
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://rstudio.github.io/leaflet/">leaflet</a>
+    </li>
+    <li>
+      <a href="http://gallery.htmlwidgets.org/">htmlwidgets</a>
+    </li>
+    <li>
+      <a href="https://crazycapivara.github.io/owmr/">owmr</a>
+    </li>
+    <li>
+      <a href="https://www.rstudio.com/">RStudio</a>
+    </li>
+    <li>
+      <a href="https://shiny.rstudio.com/gallery/">Shiny gallery</a>
+    </li>
+    <li>
+      <a href="https://hub.docker.com/u/rocker/">docker</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">simple features</h1>
+
+</div>
+
+
+<pre class="r"><code>library(sf)
+
+# overview
+ls(&quot;package:sf&quot;) %&gt;% .[grep(&quot;st_&quot;, .)]</code></pre>
+<pre><code>##  [1] &quot;st_agr&quot;                &quot;st_agr&lt;-&quot;             
+##  [3] &quot;st_area&quot;               &quot;st_as_binary&quot;         
+##  [5] &quot;st_as_grob&quot;            &quot;st_as_sf&quot;             
+##  [7] &quot;st_as_sfc&quot;             &quot;st_as_text&quot;           
+##  [9] &quot;st_bbox&quot;               &quot;st_boundary&quot;          
+## [11] &quot;st_buffer&quot;             &quot;st_cast&quot;              
+## [13] &quot;st_centroid&quot;           &quot;st_combine&quot;           
+## [15] &quot;st_contains&quot;           &quot;st_contains_properly&quot; 
+## [17] &quot;st_convex_hull&quot;        &quot;st_covered_by&quot;        
+## [19] &quot;st_covers&quot;             &quot;st_crosses&quot;           
+## [21] &quot;st_crs&quot;                &quot;st_crs&lt;-&quot;             
+## [23] &quot;st_difference&quot;         &quot;st_dimension&quot;         
+## [25] &quot;st_disjoint&quot;           &quot;st_distance&quot;          
+## [27] &quot;st_drivers&quot;            &quot;st_equals&quot;            
+## [29] &quot;st_equals_exact&quot;       &quot;st_geometry&quot;          
+## [31] &quot;st_geometry&lt;-&quot;         &quot;st_geometrycollection&quot;
+## [33] &quot;st_geometry_type&quot;      &quot;st_graticule&quot;         
+## [35] &quot;st_interpolate_aw&quot;     &quot;st_intersection&quot;      
+## [37] &quot;st_intersects&quot;         &quot;st_is&quot;                
+## [39] &quot;st_is_longlat&quot;         &quot;st_is_simple&quot;         
+## [41] &quot;st_is_valid&quot;           &quot;st_join&quot;              
+## [43] &quot;st_layers&quot;             &quot;st_length&quot;            
+## [45] &quot;st_linemerge&quot;          &quot;st_line_sample&quot;       
+## [47] &quot;st_linestring&quot;         &quot;st_list&quot;              
+## [49] &quot;st_makegrid&quot;           &quot;st_multilinestring&quot;   
+## [51] &quot;st_multipoint&quot;         &quot;st_multipolygon&quot;      
+## [53] &quot;st_overlaps&quot;           &quot;st_point&quot;             
+## [55] &quot;st_polygon&quot;            &quot;st_polygonize&quot;        
+## [57] &quot;st_precision&quot;          &quot;st_precision&lt;-&quot;       
+## [59] &quot;st_read&quot;               &quot;st_read_db&quot;           
+## [61] &quot;st_relate&quot;             &quot;st_segmentize&quot;        
+## [63] &quot;st_set_agr&quot;            &quot;st_set_crs&quot;           
+## [65] &quot;st_set_precision&quot;      &quot;st_sf&quot;                
+## [67] &quot;st_sfc&quot;                &quot;st_simplify&quot;          
+## [69] &quot;st_sym_difference&quot;     &quot;st_touches&quot;           
+## [71] &quot;st_transform&quot;          &quot;st_triangulate&quot;       
+## [73] &quot;st_union&quot;              &quot;st_viewport&quot;          
+## [75] &quot;st_voronoi&quot;            &quot;st_within&quot;            
+## [77] &quot;st_write&quot;              &quot;st_write_db&quot;          
+## [79] &quot;st_zm&quot;</code></pre>
+<pre class="r"><code># read data
+data &lt;- st_read(&quot;../FOSSGIS-workshop/data/ne_10m_airports/ne_10m_airports.shp&quot;)</code></pre>
+<pre><code>## Reading layer `ne_10m_airports&#39; from data source `/home/gabbo/coding/rosgeo-live/FOSSGIS-workshop/data/ne_10m_airports/ne_10m_airports.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 891 features and 10 fields
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: -175.1356 ymin: -53.78147 xmax: 179.1954 ymax: 78.24672
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs</code></pre>
+<pre class="r"><code>st_crs(data)</code></pre>
+<pre><code>## $epsg
+## [1] 4326
+## 
+## $proj4string
+## [1] &quot;+proj=longlat +datum=WGS84 +no_defs&quot;
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;crs&quot;</code></pre>
+<pre class="r"><code>st_bbox(data)</code></pre>
+<pre><code>##       xmin       ymin       xmax       ymax 
+## -175.13564  -53.78147  179.19544   78.24672</code></pre>
+<pre class="r"><code>dim(data)</code></pre>
+<pre><code>## [1] 891  11</code></pre>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>
